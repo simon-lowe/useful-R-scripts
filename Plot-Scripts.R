@@ -18,3 +18,17 @@ plot_fct <- function(f, from = NULL, to = NULL, n = 101){
     mode = 'lines'
   )
 }
+
+plot_vec <- function(x = NULL, y = NULL, mode = 'markers'){
+  if (!("plotly" %in% installed.packages()[, "Package"])) {
+    install.packages(new.packages, repos = "http://cran.us.r-project.org")
+  }
+  library(plotly)
+  plot_ly(
+    x = ~ x,
+    y = ~ y,
+    name = 'Plot of Y against X',
+    type = 'scatter',
+    mode = mode
+  )
+}
