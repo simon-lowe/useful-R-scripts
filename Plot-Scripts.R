@@ -19,14 +19,17 @@ plot_fct <- function(f, from = NULL, to = NULL, n = 101){
   )
 }
 
-plot_vec <- function(x = NULL, y = NULL, mode = 'markers'){
+# Nice plot of two vectors
+plot_vec <- function(x = NULL, y = NULL, from = NULL, to = NULL, mode = 'markers'){
   if (!("plotly" %in% installed.packages()[, "Package"])) {
     install.packages(new.packages, repos = "http://cran.us.r-project.org")
   }
   library(plotly)
+  tmp_from <- ifelse(is.null(from), 1, from)
+  tmp_to <- ifelse(is.null(to), length(x), to)
   plot_ly(
-    x = ~ x,
-    y = ~ y,
+    x = ~ x[tmp_from:tmp_to],
+    y = ~ y[tmp_from:tmp_to],
     name = 'Plot of Y against X',
     type = 'scatter',
     mode = mode
